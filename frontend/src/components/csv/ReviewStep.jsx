@@ -17,7 +17,7 @@ export function ReviewStep({ csvData, onComplete, onBack, isLoading, setIsLoadin
       formData.append('fieldMappings', JSON.stringify(csvData.fieldMappings));
 
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/csv/upload', {
+      const response = await fetch('https://jaa2.onrender.com/api/csv/upload', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

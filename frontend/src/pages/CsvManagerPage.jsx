@@ -17,6 +17,8 @@ import {
 import { ImportBatchModal } from '@/components/csv/ImportBatchModal';
 import { DataTable } from '@/components/csv/DataTable';
 
+const API_BASE_URL = 'https://jaa2.onrender.com';
+
 export function CsvManagerPage({ onLogout }) {
   const [csvFiles, setCsvFiles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,7 +30,7 @@ export function CsvManagerPage({ onLogout }) {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/csv/files', {
+      const response = await fetch(`${API_BASE_URL}/api/csv/files`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -63,7 +65,7 @@ export function CsvManagerPage({ onLogout }) {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/csv/${fileId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/csv/${fileId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

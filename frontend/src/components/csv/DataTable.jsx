@@ -29,7 +29,7 @@ export function DataTable({ csvFileId, onBack }) {
       });
 
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/csv/${csvFileId}/data?${params}`, {
+      const response = await fetch(`https://jaa2.onrender.com/api/csv/${csvFileId}/data?${params}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -59,7 +59,7 @@ export function DataTable({ csvFileId, onBack }) {
       const token = localStorage.getItem('token');
       
       // Fetch all data for export (without pagination)
-      const response = await fetch(`/api/csv/${csvFileId}/data?limit=10000`, {
+      const response = await fetch(`https://jaa2.onrender.com/api/csv/${csvFileId}/data?limit=10000`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -141,7 +141,7 @@ export function DataTable({ csvFileId, onBack }) {
       };
 
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/csv/rows/${editingCell.rowId}`, {
+      const response = await fetch(`https://jaa2.onrender.com/api/csv/rows/${editingCell.rowId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
