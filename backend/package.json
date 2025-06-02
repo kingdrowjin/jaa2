@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/app.js",
-    "start": "npx prisma generate && npx prisma db push --schema prisma --force-reset && node src/app.js",
-    "build": "npm install && npx prisma generate && npx prisma db push --schema prisma --force-reset",
+    "start": "npx prisma db push && node src/app.js",
+    "build": "npm install && npx prisma generate",
     "postinstall": "npx prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
