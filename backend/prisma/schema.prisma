@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String?  @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  csvFiles  CsvFile[]
+  
+  @@map("users")
+}
+
+model CsvFile {
+  id           String   @id @default(cuid())
+  userId       String
+  fileName     String
+  originalName String
+  uploadedAt   DateTime @default(now())
+  columnHeaders Json
+  rowCount     Int      @default(0)
+  filePath     String?
+  batchName    String?
+  batchType    String?
+  
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  csvRows      CsvRow[]
+  
+  @@map("csv_files")
+}
+
+model CsvRow {
+  id        String   @id @default(cuid())
+  csvFileId String
+  rowData   Json
+  rowIndex  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  csvFile   CsvFile  @relation(fields: [csvFileId], references: [id], onDelete: Cascade)
+  
+  @@map("csv_rows")
+}
