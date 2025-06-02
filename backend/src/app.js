@@ -12,7 +12,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: ['http://localhost:5173',
+    'https://jaa2.vercel.app',
+    'https://jaa2-jins-projects-b44fc42b.vercel.app',
+    'https://*.vercel.app'],
   credentials: true
 }));
 
